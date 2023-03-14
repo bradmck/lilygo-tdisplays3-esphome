@@ -58,7 +58,7 @@ class TDisplayS3 : public PollingComponent,
         spr.pushSprite(0, 0);
     }
 
-  private:
+  //private:
     TFT_eSPI tft = TFT_eSPI();
     TFT_eSprite spr = TFT_eSprite(&tft);
 };
