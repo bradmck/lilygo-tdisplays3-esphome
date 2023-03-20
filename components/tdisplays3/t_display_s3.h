@@ -78,7 +78,7 @@ class TDisplayS3 : public PollingComponent,
     // PollingComponent Methods
     /////////////
     void update() override {
-        tft.fillScreen(TFT_BLACK);
+        spr.fillScreen(TFT_BLACK);
         this->do_update_();
         spr.pushSprite(0, 0);
     }
