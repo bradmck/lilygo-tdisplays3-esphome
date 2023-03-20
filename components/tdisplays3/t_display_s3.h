@@ -92,4 +92,4 @@ class TDisplayS3 : public PollingComponent,
 }  // namespace tdisplays3
 }  // namespace esphome
 
-
+#endif
