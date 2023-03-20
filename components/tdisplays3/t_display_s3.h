@@ -20,8 +20,8 @@ class TDisplayS3 : public PollingComponent,
   public:
     void setup() override {
         tft.init();
-// Only execute this if we're exposing the TFT and SPR objects.  This is because the rotation between
-// the rotation between ESPHome and TFT_eSPI doesn't match.  There may be a better way to handle this        
+    // Only execute this if we're exposing the TFT and SPR objects.  This is because the rotation between
+    // the rotation between ESPHome and TFT_eSPI doesn't match.  There may be a better way to handle this        
 #ifdef TDISPLAYS3_EXPOSE_TFT
         switch (this->rotation_) {
         case esphome::display::DISPLAY_ROTATION_0_DEGREES: 
@@ -78,10 +78,11 @@ class TDisplayS3 : public PollingComponent,
     // PollingComponent Methods
     /////////////
     void update() override {
+        tft.fillScreen(TFT_BLACK);
         this->do_update_();
         spr.pushSprite(0, 0);
     }
-
+    // Unless the user specified expose_tft_objects: true in their config then the tft and spr objects will be private
 #ifndef TDISPLAYS3_EXPOSE_TFT
     private:
 #endif
