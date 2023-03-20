@@ -44,8 +44,13 @@ class TDisplayS3 : public PollingComponent,
             //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
         }          
 #endif   
+#ifdef TDISPLAYS3_EXPOSE_TFT
+        spr.createSprite(get_height_internal(), get_width_internal());
+        tft.fillScreen(TFT_BLACK);
+#else        
         spr.createSprite(get_width_internal(), get_height_internal());
         tft.fillScreen(TFT_BLACK);
+#endif
     }
 
     void loop() override {
@@ -78,7 +83,6 @@ class TDisplayS3 : public PollingComponent,
     // PollingComponent Methods
     /////////////
     void update() override {
-        spr.fillScreen(TFT_BLACK);
         this->do_update_();
         spr.pushSprite(0, 0);
     }
