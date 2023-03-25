@@ -25,7 +25,7 @@ CONFIG_SCHEMA = cv.All(
             cv.GenerateID(): cv.declare_id(TDISPLAYS3),
             cv.Optional(CONF_HEIGHT): cv.int_,
             cv.Optional(CONF_WIDTH): cv.int_,
-            cv.Optional(CONF_USER_BUILD_FLAGS, default=False): cv.ensure_list,
+            cv.Optional(CONF_USER_BUILD_FLAGS, default=False): cv.ensure_list(cv.string),
             cv.Optional(CONF_EXPOSE_TFT_OBJECTS, default=False): cv.boolean,
         }
     ).extend(cv.polling_component_schema("5s")),
