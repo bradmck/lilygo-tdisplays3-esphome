@@ -44,12 +44,13 @@ class TDisplayS3 : public PollingComponent,
             //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
         }          
         // If exposing the TFT objects the width and height need to be swapped, still looking into why
-        spr.createSprite(get_height_internal(), get_width_internal());
-        tft.fillScreen(TFT_BLACK);
+        //spr.createSprite(get_height_internal(), get_width_internal());
+        //tft.fillScreen(TFT_BLACK);
 #else        
+#endif
         spr.createSprite(get_width_internal(), get_height_internal());
         tft.fillScreen(TFT_BLACK);
-#endif
+
     }
 
     void loop() override {
