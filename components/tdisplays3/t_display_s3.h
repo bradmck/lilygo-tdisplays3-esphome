@@ -83,6 +83,7 @@ class TDisplayS3 : public PollingComponent,
 
     void set_rotation(int rotation) override {
         tft.setRotation(3);
+        return;
     }
     /////////////
     // PollingComponent Methods
