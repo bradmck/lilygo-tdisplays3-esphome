@@ -48,6 +48,7 @@ class TDisplayS3 : public PollingComponent,
         //tft.fillScreen(TFT_BLACK);
 #else        
 #endif
+        ESP_LOGD("tdisplays3", Creating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());
         spr.createSprite(get_width_internal(), get_height_internal());
         tft.fillScreen(TFT_BLACK);
 
