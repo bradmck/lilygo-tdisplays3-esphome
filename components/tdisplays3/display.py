@@ -41,7 +41,10 @@ async def to_code(config):
         # If set then the TFT and SPR objects will be exposed publicly and can be used in ESPHome lambdas
         cg.add_build_flag("-DTDISPLAYS3_EXPOSE_TFT")
 
-    if config[CONF_USER_BUILD_FLAGS] == False:
+    if CONF_USER_BUILD_FLAGS in config:
+        _LOGGER.warning("Setting custom build_flags for TDisplayS3")
+    else:
+    #if config[CONF_USER_BUILD_FLAGS] == False:
         _LOGGER.info("Setting default build_flags for TDisplayS3")        
         # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3
         # This allows using current, unpatched versions of TFT_eSPI
@@ -77,8 +80,7 @@ async def to_code(config):
         # If you don't care about control of the backlight you can uncomment the two lines below - it will be on HIGH permanently
         #cg.add_build_flag("-DTFT_BL=38")
         #cg.add_build_flag("-DTFT_BACKLIGHT_ON=HIGH")
-    else:
-        _LOGGER.warning("Setting custom build_flags for TDisplayS3")
+
 
     cg.add_library("SPI", None)
     cg.add_library("FS", None)
