@@ -45,7 +45,7 @@ async def to_code(config):
         _LOGGER.warning("Setting custom TFT_eSPI PlatformIO build_flags for TDisplayS3 as follows:")
         for key in config[CONF_USER_BUILD_FLAGS]:
             cg.add_build_flag("-D" + key)
-            _LOGGER.warning(key)
+            _LOGGER.warning("-D" + key)
     else:
         _LOGGER.info("Setting default TFT_eSPI PlatformIO build_flags for TDisplayS3")        
         # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3

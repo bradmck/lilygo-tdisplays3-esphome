@@ -84,8 +84,7 @@ class TDisplayS3 : public PollingComponent,
     /////////////
     // PollingComponent Methods
     /////////////
-    void update() override {
-        ESP_LOGD("tdisplays3", "Updating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());        
+    void update() override {       
         this->do_update_();
         spr.pushSprite(0, 0);
     }
