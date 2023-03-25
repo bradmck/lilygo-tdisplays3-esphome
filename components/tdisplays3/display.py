@@ -42,13 +42,12 @@ async def to_code(config):
         cg.add_build_flag("-DTDISPLAYS3_EXPOSE_TFT")
 
     if CONF_USER_BUILD_FLAGS in config:
-        _LOGGER.warning("Setting custom build_flags for TDisplayS3 as follows:")
+        _LOGGER.warning("Setting custom TFT_eSPI PlatformIO build_flags for TDisplayS3 as follows:")
         for key in config[CONF_USER_BUILD_FLAGS]:
-            cg.add_build_flag(key)
+            cg.add_build_flag("-D" + key)
             _LOGGER.warning(key)
     else:
-    #if config[CONF_USER_BUILD_FLAGS] == False:
-        _LOGGER.info("Setting default build_flags for TDisplayS3")        
+        _LOGGER.info("Setting default TFT_eSPI PlatformIO build_flags for TDisplayS3")        
         # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3
         # This allows using current, unpatched versions of TFT_eSPI
         cg.add_build_flag("-DUSER_SETUP_LOADED=1")
