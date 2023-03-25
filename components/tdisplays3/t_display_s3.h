@@ -81,7 +81,7 @@ class TDisplayS3 : public PollingComponent,
         spr.drawPixel(x, y, display::ColorUtil::color_to_565(color));
     }
 
-    void set_rotation(DisplayRotation rotation) override {
+    void set_rotation(rotation) override {
         tft.setRotation(3);
     }
     /////////////
