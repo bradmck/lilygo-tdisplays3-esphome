@@ -42,7 +42,10 @@ async def to_code(config):
         cg.add_build_flag("-DTDISPLAYS3_EXPOSE_TFT")
 
     if CONF_USER_BUILD_FLAGS in config:
-        _LOGGER.warning("Setting custom build_flags for TDisplayS3")
+        _LOGGER.warning("Setting custom build_flags for TDisplayS3 as follows:")
+        for key in config[CONF_USER_BUILD_FLAGS]:
+            cg.add_build_flag(key)
+            _LOGGER.warning(key)
     else:
     #if config[CONF_USER_BUILD_FLAGS] == False:
         _LOGGER.info("Setting default build_flags for TDisplayS3")        
