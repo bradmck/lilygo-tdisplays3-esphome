@@ -1,3 +1,4 @@
+import logging
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import display
@@ -7,6 +8,8 @@ from esphome.const import (
   CONF_LAMBDA,
   CONF_WIDTH,
 )
+_LOGGER = logging.getLogger(__name__)
+
 from . import tdisplays3_ns
 
 TDISPLAYS3 = tdisplays3_ns.class_(
@@ -39,6 +42,7 @@ async def to_code(config):
         cg.add_build_flag("-DTDISPLAYS3_EXPOSE_TFT")
 
     if config[CONF_USER_BUILD_FLAGS] == False:
+        _LOGGER.info("Setting default build_flags for TDisplayS3")        
         # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3
         # This allows using current, unpatched versions of TFT_eSPI
         cg.add_build_flag("-DUSER_SETUP_LOADED=1")
@@ -73,6 +77,8 @@ async def to_code(config):
         # If you don't care about control of the backlight you can uncomment the two lines below - it will be on HIGH permanently
         #cg.add_build_flag("-DTFT_BL=38")
         #cg.add_build_flag("-DTFT_BACKLIGHT_ON=HIGH")
+    else:
+        _LOGGER.warning("Setting custom build_flags for TDisplayS3")
 
     cg.add_library("SPI", None)
     cg.add_library("FS", None)
