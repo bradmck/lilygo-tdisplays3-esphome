@@ -20,6 +20,8 @@ class TDisplayS3 : public PollingComponent,
   public:
     void setup() override {
         tft.init();
+        ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());
+        spr.createSprite(get_width_internal(), get_height_internal());        
     // Only execute this if we're exposing the TFT and SPR objects.  This is because the rotation between
     // the rotation between ESPHome and TFT_eSPI doesn't match.  There may be a better way to handle this        
 #ifdef TDISPLAYS3_EXPOSE_TFT
@@ -44,11 +46,10 @@ class TDisplayS3 : public PollingComponent,
             //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
         }          
         // If exposing the TFT objects the width and height need to be swapped, still looking into why
-        ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_height_internal(), get_width_internal());
-        spr.createSprite(get_height_internal(), get_width_internal());
+        //ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_height_internal(), get_width_internal());
+        //spr.createSprite(get_height_internal(), get_width_internal());
 #else        
-        ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());
-        spr.createSprite(get_width_internal(), get_height_internal());
+
 #endif
         tft.fillScreen(TFT_BLACK);
 
