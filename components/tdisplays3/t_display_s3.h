@@ -25,26 +25,26 @@ class TDisplayS3 : public PollingComponent,
     // Only execute this if we're exposing the TFT and SPR objects.  This is because the rotation between
     // the rotation between ESPHome and TFT_eSPI doesn't match.  There may be a better way to handle this        
 #ifdef TDISPLAYS3_EXPOSE_TFT
-        switch (this->rotation_) {
-        case esphome::display::DISPLAY_ROTATION_0_DEGREES: 
-            //this->rotation_ = esphome::display::DISPLAY_ROTATION_90_DEGREES;
-            tft.setRotation(0);
-            break;
-        case esphome::display::DISPLAY_ROTATION_90_DEGREES: 
-            this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
-            tft.setRotation(1);
-            break;            
-        case esphome::display::DISPLAY_ROTATION_180_DEGREES: 
-            this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
-            tft.setRotation(2);
-            break;            
-        case esphome::display::DISPLAY_ROTATION_270_DEGREES: 
-            this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
-            tft.setRotation(3);
-            break;            
-        //default:
-            //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
-        }          
+        // switch (this->rotation_) {
+        // case esphome::display::DISPLAY_ROTATION_0_DEGREES: 
+        //     //this->rotation_ = esphome::display::DISPLAY_ROTATION_90_DEGREES;
+        //     tft.setRotation(0);
+        //     break;
+        // case esphome::display::DISPLAY_ROTATION_90_DEGREES: 
+        //     this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
+        //     tft.setRotation(1);
+        //     break;            
+        // case esphome::display::DISPLAY_ROTATION_180_DEGREES: 
+        //     this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
+        //     tft.setRotation(2);
+        //     break;            
+        // case esphome::display::DISPLAY_ROTATION_270_DEGREES: 
+        //     this->rotation_ = esphome::display::DISPLAY_ROTATION_0_DEGREES;
+        //     tft.setRotation(3);
+        //     break;            
+        // //default:
+        //     //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
+        // }          
         // If exposing the TFT objects the width and height need to be swapped, still looking into why
         //ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_height_internal(), get_width_internal());
         //spr.createSprite(get_height_internal(), get_width_internal());
