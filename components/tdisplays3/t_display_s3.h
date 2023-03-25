@@ -44,12 +44,12 @@ class TDisplayS3 : public PollingComponent,
             //id(global_display_rotation) = DISPLAY_ROTATION_0_DEGREES;
         }          
         // If exposing the TFT objects the width and height need to be swapped, still looking into why
-        //spr.createSprite(get_height_internal(), get_width_internal());
-        //tft.fillScreen(TFT_BLACK);
+        ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_height_internal(), get_width_internal());
+        spr.createSprite(get_height_internal(), get_width_internal());
 #else        
-#endif
-        ESP_LOGD("tdisplays3", "Creating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());
+        ESP_LOGCONFIG("tdisplays3", "Creating sprite with width: %d, height: %d", get_width_internal(), get_height_internal());
         spr.createSprite(get_width_internal(), get_height_internal());
+#endif
         tft.fillScreen(TFT_BLACK);
 
     }
