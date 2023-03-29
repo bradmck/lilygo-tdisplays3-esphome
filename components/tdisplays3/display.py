@@ -7,6 +7,9 @@ from esphome.const import (
   CONF_LAMBDA,
   CONF_WIDTH,
 )
+
+_LOGGER = logging.getLogger(__name__)
+
 from . import tdisplays3_ns
 
 TDISPLAYS3 = tdisplays3_ns.class_(
