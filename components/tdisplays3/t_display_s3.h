@@ -31,16 +31,16 @@ class TDisplayS3 : public PollingComponent,
         ESP_LOGCONFIG(TAG, "tdisplays3:");
         setup_t tftSetup;
         tft.getSetup(tftSetup);            
-        ESP_LOGCONFIG(TAG, "\tTFT_eSPI Library Version: %s", tftSetup.version.c_str());
-        ESP_LOGCONFIG(TAG, "\tTFT Width: %d, TFT Height: %d", tftSetup.tft_width, tftSetup.tft_height);
+        ESP_LOGCONFIG(TAG, "   TFT_eSPI Library Version: %s", tftSetup.version.c_str());
+        ESP_LOGCONFIG(TAG, "   TFT Width: %d, TFT Height: %d", tftSetup.tft_width, tftSetup.tft_height);
 
         int iTFTDriver = tftSetup.tft_driver;
-        ESP_LOGCONFIG(TAG, "TFT_eSPI Driver: %s", ((String)iTFTDriver).c_str());
+        ESP_LOGCONFIG(TAG, "   TFT_eSPI Driver: %s", ((String)iTFTDriver).c_str());
         if(tftSetup.serial == 1) {
-            ESP_LOGCONFIG(TAG, "\tTFT_eSPI Interface: Serial");
+            ESP_LOGCONFIG(TAG, "   TFT_eSPI Interface: Serial");
         }
         else {
-            ESP_LOGCONFIG(TAG, "\tTFT_eSPI Interface: 8-bit Parallel");
+            ESP_LOGCONFIG(TAG, "   TFT_eSPI Interface: 8-bit Parallel");
         }
 
     }
