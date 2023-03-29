@@ -16,52 +16,61 @@ TDISPLAYS3 = tdisplays3_ns.class_(
 def validate_tdisplays3(config):
    return config
 
+CONF_USER_BUILD_FLAGS = "user_build_flags"
+
 CONFIG_SCHEMA = cv.All(
     display.FULL_DISPLAY_SCHEMA.extend(
         {
             cv.GenerateID(): cv.declare_id(TDISPLAYS3),
             cv.Optional(CONF_HEIGHT): cv.int_,
             cv.Optional(CONF_WIDTH): cv.int_,
+            cv.Optional(CONF_USER_BUILD_FLAGS): cv.ensure_list(cv.string),
         }
     ).extend(cv.polling_component_schema("5s")),
     validate_tdisplays3,
 )
 
 async def to_code(config):
-    # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3
-    # This allows using current, unpatched versions of TFT_eSPI
-    cg.add_build_flag("-DUSER_SETUP_LOADED=1")
-    cg.add_build_flag("-DST7789_DRIVER=1")
-    cg.add_build_flag("-DINIT_SEQUENCE_3=1")
-    cg.add_build_flag("-DCGRAM_OFFSET")
-    cg.add_build_flag("-DTFT_RGB_ORDER=TFT_RGB")
-    cg.add_build_flag("-DTFT_INVERSION_ON=1")
-    cg.add_build_flag("-DTFT_PARALLEL_8_BIT=1")
-    cg.add_build_flag("-DTFT_WIDTH=170")
-    cg.add_build_flag("-DTFT_HEIGHT=320")
-    cg.add_build_flag("-DTFT_DC=7")
-    cg.add_build_flag("-DTFT_RST=5")
-    cg.add_build_flag("-DTFT_WR=8")
-    cg.add_build_flag("-DTFT_RD=9")
-    cg.add_build_flag("-DTFT_D0=39")
-    cg.add_build_flag("-DTFT_D1=40")
-    cg.add_build_flag("-DTFT_D2=41")
-    cg.add_build_flag("-DTFT_D3=42")
-    cg.add_build_flag("-DTFT_D4=45")
-    cg.add_build_flag("-DTFT_D5=46")
-    cg.add_build_flag("-DTFT_D6=47")
-    cg.add_build_flag("-DTFT_D7=48")
-    cg.add_build_flag("-DLOAD_GLCD=1")
-    cg.add_build_flag("-DLOAD_FONT2=1")
-    cg.add_build_flag("-DLOAD_FONT4=1")
-    cg.add_build_flag("-DLOAD_FONT6=1")
-    cg.add_build_flag("-DLOAD_FONT7=1")
-    cg.add_build_flag("-DLOAD_FONT8=1")
-    cg.add_build_flag("-DLOAD_GFXFF=1")
-    cg.add_build_flag("-DSMOOTH_FONT=1")
-    # If you don't care about control of the backlight you can uncomment the two lines below")
-    #cg.add_build_flag("-DTFT_BL=38")
-    #cg.add_build_flag("-DTFT_BACKLIGHT_ON=HIGH")
+    if CONF_USER_BUILD_FLAGS in config:
+        _LOGGER.warning("Setting custom TFT_eSPI PlatformIO build_flags for TDisplayS3 as follows:")
+        for key in config[CONF_USER_BUILD_FLAGS]:
+            cg.add_build_flag("-D" + key)
+            _LOGGER.warning("-D" + key)
+    else:
+        # Add platformio build_flags for the correct TFT_eSPI settings for the T-Display-S3
+        # This allows using current, unpatched versions of TFT_eSPI
+        cg.add_build_flag("-DUSER_SETUP_LOADED=1")
+        cg.add_build_flag("-DST7789_DRIVER=1")
+        cg.add_build_flag("-DINIT_SEQUENCE_3=1")
+        cg.add_build_flag("-DCGRAM_OFFSET")
+        cg.add_build_flag("-DTFT_RGB_ORDER=TFT_RGB")
+        cg.add_build_flag("-DTFT_INVERSION_ON=1")
+        cg.add_build_flag("-DTFT_PARALLEL_8_BIT=1")
+        cg.add_build_flag("-DTFT_WIDTH=170")
+        cg.add_build_flag("-DTFT_HEIGHT=320")
+        cg.add_build_flag("-DTFT_DC=7")
+        cg.add_build_flag("-DTFT_RST=5")
+        cg.add_build_flag("-DTFT_WR=8")
+        cg.add_build_flag("-DTFT_RD=9")
+        cg.add_build_flag("-DTFT_D0=39")
+        cg.add_build_flag("-DTFT_D1=40")
+        cg.add_build_flag("-DTFT_D2=41")
+        cg.add_build_flag("-DTFT_D3=42")
+        cg.add_build_flag("-DTFT_D4=45")
+        cg.add_build_flag("-DTFT_D5=46")
+        cg.add_build_flag("-DTFT_D6=47")
+        cg.add_build_flag("-DTFT_D7=48")
+        cg.add_build_flag("-DLOAD_GLCD=1")
+        cg.add_build_flag("-DLOAD_FONT2=1")
+        cg.add_build_flag("-DLOAD_FONT4=1")
+        cg.add_build_flag("-DLOAD_FONT6=1")
+        cg.add_build_flag("-DLOAD_FONT7=1")
+        cg.add_build_flag("-DLOAD_FONT8=1")
+        cg.add_build_flag("-DLOAD_GFXFF=1")
+        cg.add_build_flag("-DSMOOTH_FONT=1")
+        # If you don't care about control of the backlight you can uncomment the two lines below")
+        #cg.add_build_flag("-DTFT_BL=38")
+        #cg.add_build_flag("-DTFT_BACKLIGHT_ON=HIGH")
 
     cg.add_library("SPI", None)
     cg.add_library("FS", None)
