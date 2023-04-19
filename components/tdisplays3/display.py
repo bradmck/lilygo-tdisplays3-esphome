@@ -20,6 +20,7 @@ def validate_tdisplays3(config):
    return config
 
 CONF_USER_BUILD_FLAGS = "user_build_flags"
+CONF_COLOR_DEPTH = "color_depth"
 
 CONFIG_SCHEMA = cv.All(
     display.FULL_DISPLAY_SCHEMA.extend(
@@ -28,6 +29,7 @@ CONFIG_SCHEMA = cv.All(
             cv.Optional(CONF_HEIGHT): cv.int_,
             cv.Optional(CONF_WIDTH): cv.int_,
             cv.Optional(CONF_USER_BUILD_FLAGS): cv.ensure_list(cv.string),
+            cv.Optional(CONF_COLOR_DEPTH, default=8): cv.one_of(1, 4, 8, 16, int=True),
         }
     ).extend(cv.polling_component_schema("5s")),
     validate_tdisplays3,
