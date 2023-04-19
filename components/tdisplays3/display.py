@@ -86,7 +86,7 @@ async def to_code(config):
     await cg.register_component(var, config)
     await display.register_display(var, config)
     if CONF_COLOR_DEPTH in config:
-        cg.add(var.color_depth(config[CONF_COLOR_DEPTH]))
+        cg.add(var.set_color_depth(config[CONF_COLOR_DEPTH]))
 
     if CONF_LAMBDA in config:
         lambda_ = await cg.process_lambda(

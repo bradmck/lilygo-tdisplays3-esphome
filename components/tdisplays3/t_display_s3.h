@@ -79,6 +79,10 @@ class TDisplayS3 : public PollingComponent,
         spr.pushSprite(0, 0);
     }
 
+    void set_color_depth(int8_t color_depth) {
+        spr.setColorDepth(color_depth);
+    }
+
   private:
     TFT_eSPI tft = TFT_eSPI();
     TFT_eSprite spr = TFT_eSprite(&tft);
