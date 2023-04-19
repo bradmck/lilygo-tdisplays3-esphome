@@ -20,6 +20,7 @@ class TDisplayS3 : public PollingComponent,
   public:
     void setup() override {
         tft.init();
+        spr.setColorDepth(this->color_depth);
         spr.createSprite(get_width_internal(), get_height_internal());
         tft.fillScreen(TFT_BLACK);
     }
@@ -34,9 +35,10 @@ class TDisplayS3 : public PollingComponent,
         ESP_LOGCONFIG(TAG, "  TFT_eSPI Library Version: %s", tftSetup.version.c_str());
         ESP_LOGCONFIG(TAG, "  TFT Width: %d", tftSetup.tft_width);
         ESP_LOGCONFIG(TAG, "  TFT Height: %d", tftSetup.tft_height);
+        ESP_LOGCONFIG(TAG, "  Color Depth: %d", spr.getColorDepth);
 
         int iTFTDriver = tftSetup.tft_driver;
-        ESP_LOGCONFIG(TAG, "  TFT_eSPI Driver: %s", ((String)iTFTDriver).c_str());
+        ESP_LOGCONFIG(TAG, "  TFT_eSPI Driver: %x", iTFTDriver);
         if(tftSetup.serial == 1) {
             ESP_LOGCONFIG(TAG, "  TFT_eSPI Interface: Serial");
         }
