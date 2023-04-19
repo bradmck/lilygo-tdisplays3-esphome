@@ -20,7 +20,7 @@ class TDisplayS3 : public PollingComponent,
   public:
     void setup() override {
         tft.init();
-        spr.setColorDepth(this->color_depth_);
+        spr.setColorDepth(this->color_depth);
         spr.createSprite(get_width_internal(), get_height_internal());
         tft.fillScreen(TFT_BLACK);
     }
