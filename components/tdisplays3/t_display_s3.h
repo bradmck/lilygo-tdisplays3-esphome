@@ -89,7 +89,7 @@ class TDisplayS3 : public PollingComponent,
     TFT_eSprite spr = TFT_eSprite(&tft);
 
     protected:
-    int8_t *color_depth_;
+    int8_t color_depth_;
 
 };
 
